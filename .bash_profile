@@ -6,6 +6,8 @@ alias g="git"
 alias nano='vi'
 alias v='vi'
 alias r='ranger'
+
+# Git convinience
 alias gcl='git clone'
 alias gc='git commit'
 alias gp='git push'
@@ -14,6 +16,8 @@ alias gA='git add -A'
 alias ga='git add -nA'
 alias gd='git diff'
 alias amend='git commit --amend --no-edit'
+alias gU='git diff --name-only --diff-filter=U'
+alias gC='git commit -a && git push'
 alias bconf='vi ~/.bash_profile && source ~/.bash_profile'
 alias vconf='vi ~/.vimrc'
 alias r='ranger' 
