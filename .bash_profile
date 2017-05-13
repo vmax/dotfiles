@@ -1,4 +1,4 @@
-export PATH="$HOME/.fastlane/bin:$PATH:$HOME/chunkwm/bin/"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/:$PATH"
 export RANGER_LOAD_DEFAULT_RC='FALSE'
 
 export HISTFILESIZE=-1
