@@ -2,4 +2,11 @@
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}' && killall Dock
 # Make Hidden Apps “Hidden” in Dock
 defaults write com.apple.Dock showhidden -bool TRUE; killall Dock
+# Show Full File Path in Finder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES; killall Finder
 
+# change hostname
+scutil --set ComputerName "ghost"
+scutil --set LocalHostName "ghost"
+scutil --set HostName "ghost"
+dscacheutil -flushcache
