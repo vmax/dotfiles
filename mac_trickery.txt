@@ -10,3 +10,6 @@ scutil --set ComputerName "ghost"
 scutil --set LocalHostName "ghost"
 scutil --set HostName "ghost"
 dscacheutil -flushcache
+
+# make verbose boot for all
+sudo nvram boot-args="-v"
