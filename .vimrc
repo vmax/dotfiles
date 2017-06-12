@@ -40,3 +40,10 @@ inoremap <ESC> <NOP>
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+set number
+set tw=79

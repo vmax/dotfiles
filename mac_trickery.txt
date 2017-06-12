@@ -13,3 +13,6 @@ dscacheutil -flushcache
 
 # make verbose boot for all
 sudo nvram boot-args="-v"
+
+# disable startup chime
+sudo nvram SystemAudioVolume=%80
