@@ -2,6 +2,8 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/:$PATH"
 export PATH="~/Library/Android/sdk/platform-tools/:$PATH"
 export RANGER_LOAD_DEFAULT_RC='FALSE'
 
+. ~/.fastlane/completions/completion.sh
+
 export HISTFILESIZE=-1
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='l:ls:fg:history:h:hs:bconf:vconf:td:night:unnight'
@@ -13,6 +15,8 @@ function alias_msg {
 	echo "$(tput rev)$(tput setaf 1)$1$(tput setaf 0) for $2$(tput sgr 0)"
 }
 
+alias apm-ls='adb shell pm list packages'
+alias apm-rm='adb shell pm uninstall -k --user 0'
 alias amend='\git commit --amend --no-edit'
 alias b='\brew'
 alias bconf='v ~/.bash_profile && source ~/.bash_profile'
