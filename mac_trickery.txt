@@ -16,3 +16,6 @@ sudo nvram boot-args="-v"
 
 # disable startup chime
 sudo nvram SystemAudioVolume=%80
+
+# disable docks
+defaults write com.apple.finder CreateDesktop -bool false

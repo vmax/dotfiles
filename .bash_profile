@@ -1,6 +1,5 @@
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/:$PATH"
-export PATH="~/Library/Android/sdk/platform-tools/:$PATH"
-export RANGER_LOAD_DEFAULT_RC='FALSE'
+export PATH="~/Library/Android/sdk/platform-tools/:$HOME:$PATH"
 
 . ~/.fastlane/completions/completion.sh
 
@@ -21,7 +20,6 @@ alias amend='\git commit --amend --no-edit'
 alias b='\brew'
 alias bconf='v ~/.bash_profile && source ~/.bash_profile'
 alias bi='b install'
-alias brew='alias_msg b brew'
 alias bs='b search'
 alias c='\cd'
 alias cask='b cask'
@@ -30,7 +28,6 @@ alias ci='cask install'
 alias fp='\yapf --in-place'
 alias fpa='gd --name-only | grep py | xargs ls'
 alias fpA='gd --name-only | grep py | xargs yapf --in-place'
-alias yapf='alias_msg fp yapf'
 alias Ds='./manage.py shell_plus'
 alias g="\git"
 alias gA='g add -A'
@@ -45,30 +42,20 @@ alias gco='g checkout'
 alias gd='g diff --relative'
 alias gf='g fetch -p'
 alias gsb='g branch -a|grep'
-alias git='alias_msg g git'
 alias gp='g push'
-alias gpu='g push -u origin HEAD'
+alias gpu='g push -u origin HEAD 2>&1 | urlview'
 alias h='\heroku'
 alias hr='\heroku run'
 alias hs='\history | grep --color=auto '
 alias hide='chflags hidden'
-alias ipython='alias_msg p ipython'
 alias l="\ls -G1l"
-alias ls='alias_msg l ls'
 alias nano='vi'
 alias night='~/nshift 100 && sleep 2 && ~/brightness 0.01'
 alias unnight='~/nshift 0'
 alias p='\ipython'
 alias pp='\python'
-alias python='alias_msg pp python'
-alias r='\ranger'
-alias ranger='alias_msg r ranger'
-alias R='\rm -v'
-alias rm='alias_msg R rm'
 alias td='v ~/TODO.md'
 alias v='\vi'
 alias vconf='\vim ~/.vimrc'
-alias vi='alias_msg v vi'
-alias vim='alias_msg v vim'
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; echo; command rm -f $tmpfile; } 
