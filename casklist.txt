@@ -1,7 +1,9 @@
+adoptopenjdk
 adoptopenjdk8
 android-file-transfer
 android-studio
 appcleaner
+balenaetcher
 coconutbattery
 docker
 fastlane
@@ -16,10 +18,12 @@ logitech-options
 microsoft-office
 minikube
 pycharm
+rar
 slack
 toggl
 tor-browser
 transmission
+tunnelblick
 upwork
 virtualbox
 visual-studio-code
