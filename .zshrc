@@ -21,14 +21,10 @@ brew-graph-deps() {
    tempfile=$(mktemp); brew graph --installed --highlight-outdated --highlight-leaves | dot -Tsvg > $tempfile; mv $tempfile $tempfile.svg; open -a "Google Chrome.app" $tempfile.svg 
 }
 
-#export USE_BAZEL_VERSION=0.29.1
-
 alias bazel='nocorrect bazel'
 
 export WORKON_HOME=~/.virtualenvs/
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
+eval "$(direnv hook zsh)"
