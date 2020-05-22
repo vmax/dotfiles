@@ -15,7 +15,7 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$HOME/.fastlane/bin:$HOME/work/GraknLabs/tools/:$PATH"
+export PATH="$HOME/.fastlane/bin:$HOME/work/graknlabs/tools/:$PATH"
 
 brew-graph-deps() {
    tempfile=$(mktemp); brew graph --installed --highlight-outdated --highlight-leaves | dot -Tsvg > $tempfile; mv $tempfile $tempfile.svg; open -a "Google Chrome.app" $tempfile.svg 
@@ -25,5 +25,8 @@ alias bazel='nocorrect bazel'
 
 export WORKON_HOME=~/.virtualenvs/
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
+
+source $HOME/dotfiles/az.completion
+
 
