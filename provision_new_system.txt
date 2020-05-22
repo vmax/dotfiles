@@ -1,0 +1,58 @@
+apt update
+apt upgrade -qy
+
+snap install --classic slack
+snap install discord
+
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+apt update
+apt install google-chrome
+
+# obtain ssh private key and put ~/.ssh/id_rsa
+
+apt purge firefox firefox-locale-ru firefox-locale-en
+
+mkdir work
+
+apt install git zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# clone dotfiles
+# link .zshrc to dotfiles/.zshrc
+
+apt install python3-virtualenvwrapper
+
+git config --global user.email 'vmax0770@gmail.com'
+git config --global user.name 'Max Vorobev'
+
+apt install transmission-gtk
+
+apt install build-essential libpython3-dev
+
+apt install docker.io docker-compose
+usermod -a -G docker $USER 
+
+sudo snap install --classic pycharm-professional
+
+
+apt install gnome-tweaks
+
+
+wget https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64 -O /usr/local/bin/bazel
+
+apt install silversearcher-ng
+
+apt install cpufrequtils
+
+# flathub install pycharm,intellij,slack,discord,toggl,zoom
+
+apt install openjdk-8-jdk
+
+apt install python2
+sudo ln -s /usr/bin/python2 /usr/bin/python
+
+apt install lm-sensors
+sensors-detect
+
