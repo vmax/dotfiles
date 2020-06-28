@@ -4,6 +4,15 @@ ZSH_THEME="dieter"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+# collect history from shells running in parallels
+setopt APPEND_HISTORY
+# never store same command twice
+setopt HIST_IGNORE_ALL_DUPS
+# trim multiple spaces in commands
+setopt HIST_REDUCE_BLANKS
+# `history` command invocation is not stored in history
+setopt HIST_NO_STORE
+
 plugins=(
   aws
   git
@@ -12,6 +21,7 @@ plugins=(
   django
   docker
   docker-compose
+  globalias
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -29,4 +39,4 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 
 source $HOME/dotfiles/az.completion
 
-
+alias t='git commit --allow-empty -m triggerCI && git push'
