@@ -21,7 +21,6 @@ plugins=(
   django
   docker
   docker-compose
-  globalias
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -31,12 +30,18 @@ brew-graph-deps() {
    tempfile=$(mktemp); brew graph --installed --highlight-outdated --highlight-leaves | dot -Tsvg > $tempfile; mv $tempfile $tempfile.svg; open -a "Google Chrome.app" $tempfile.svg 
 }
 
-alias bazel='nocorrect bazel'
 
 export WORKON_HOME=~/.virtualenvs/
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
+source virtualenvwrapper_lazy.sh
 
 source $HOME/dotfiles/az.completion
 
-alias t='git commit --allow-empty -m triggerCI && git push'
+
+function agr { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
+alias bazel='nocorrect bazel'
+alias t='git commit --allow-empty -m "Trigger CI" && git push'
+alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | xsel -b -i"
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+alias vi='nocorrect nvim'
