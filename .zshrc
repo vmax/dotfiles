@@ -15,12 +15,8 @@ setopt HIST_NO_STORE
 
 plugins=(
   aws
-  git
   z
-  kubectl
   django
-  docker
-  docker-compose
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -41,7 +37,7 @@ source $HOME/dotfiles/az.completion
 function agr { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
 alias bazel='nocorrect bazel'
 alias t='git commit --allow-empty -m "Trigger CI" && git push'
-alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | xsel -b -i"
+alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | pbcopy"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias vi='nocorrect nvim'
