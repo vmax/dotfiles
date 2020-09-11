@@ -20,7 +20,7 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$HOME/.poetry/bin:$HOME/work/graknlabs/tools/:$PATH"
+export PATH="/usr/share/virtualenvwrapper/:$HOME/.poetry/bin:$HOME/work/graknlabs/tools/:$PATH"
 
 brew-graph-deps() {
    tempfile=$(mktemp); brew graph --installed --highlight-outdated --highlight-leaves | dot -Tsvg > $tempfile; mv $tempfile $tempfile.svg; open -a "Google Chrome.app" $tempfile.svg 
