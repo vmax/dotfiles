@@ -41,3 +41,5 @@ alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | pbcopy
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias vi='nocorrect nvim'
+alias J8='sudo update-java-alternatives -s java-1.8.0-openjdk-amd64'
+alias J11='sudo update-java-alternatives -s java-1.11.0-openjdk-amd64'
