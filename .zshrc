@@ -32,6 +32,7 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source virtualenvwrapper_lazy.sh
 
 source $HOME/dotfiles/az.completion
+source $HOME/dotfiles/ssh.completion
 
 
 function agr { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
@@ -43,3 +44,4 @@ alias pbpaste='xsel --clipboard --output'
 alias vi='nocorrect nvim'
 alias J8='sudo update-java-alternatives -s java-1.8.0-openjdk-amd64'
 alias J11='sudo update-java-alternatives -s java-1.11.0-openjdk-amd64'
+

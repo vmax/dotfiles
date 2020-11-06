@@ -1,0 +1,13 @@
+_ssh() {
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    subcommands_1=$(awk '/Host / {printf "%s ",$2} END {print ""}' $HOME/.ssh/config)
+
+    if [[ ${COMP_CWORD} == 1 ]] ; then
+        COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) ) #some magic
+        return 0
+    fi
+}
+
+complete -F _ssh ssh
+
