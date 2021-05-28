@@ -22,7 +22,7 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/share/virtualenvwrapper/:$HOME/work/graknlabs/tools/:$PATH"
+export PATH="/usr/share/virtualenvwrapper/:$HOME/work/vaticle/tools/:$PATH"
 
 
 export WORKON_HOME=~/.virtualenvs/
@@ -34,6 +34,14 @@ source $HOME/dotfiles/ssh.completion
 
 
 function agr { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
+
+_transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "http://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "http://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "http://transfer.sh/$file_name"|tee /dev/null;fi;}
+
+function transfer { _transfer "$*" | xsel --clipboard --input }
+
+function encrypt { openssl enc -aes-256-cbc -pbkdf2 -in "$1" -out "$1.enc" }
+
+
 alias bazel='nocorrect bazel'
 alias t='git commit --allow-empty -m "Trigger CI" && git push'
 alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | pbcopy"
@@ -47,6 +55,7 @@ alias fd=fdfind
 alias bat=batcat
 alias e="fd --type=f | fzf --bind 'enter:execute(nvim {1})+abort' || true"
 alias size="du -d1 -h"
+alias docker-images-gc="docker image ls --format='{{ .ID }}' | xargs docker image rm -f"
 
 # Created by `userpath` on 2020-11-20 19:33:45
 export PATH="$PATH:/home/vmax/.local/bin"
