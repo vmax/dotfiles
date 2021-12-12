@@ -16,13 +16,13 @@ setopt HIST_NO_STORE
 plugins=(
   aws
   z
-  django
   kubectl
   helm
+  fzf-tab
 )
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/share/virtualenvwrapper/:$HOME/work/vaticle/tools/:$PATH"
+export PATH="$HOME/Android/Sdk/platform-tools/:/usr/share/virtualenvwrapper/:$HOME/work/vaticle/tools/:$PATH"
 
 
 export WORKON_HOME=~/.virtualenvs/
@@ -43,6 +43,8 @@ function encrypt { openssl enc -aes-256-cbc -pbkdf2 -in "$1" -out "$1.enc" }
 
 
 alias bazel='nocorrect bazel'
+alias cargo='nocorrect cargo'
+alias killall='nocorrect killall'
 alias t='git commit --allow-empty -m "Trigger CI" && git push'
 alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | pbcopy"
 alias git-copy-last-commit-sha="git rev-parse HEAD | tr -d '\n' | pbcopy"
@@ -54,6 +56,7 @@ alias J11='sudo update-java-alternatives -s java-1.11.0-openjdk-amd64'
 alias fd=fdfind
 alias bat=batcat
 alias e="fd --type=f | fzf --bind 'enter:execute(nvim {1})+abort' || true"
+alias ec="fd --type=f | fzf --bind 'enter:execute(batcat {1})+abort' || true"
 alias size="du -d1 -h"
 alias docker-images-gc="docker image ls --format='{{ .ID }}' | xargs docker image rm -f"
 
@@ -65,4 +68,8 @@ bindkey -s '^T' ' e\n'
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
