@@ -20,9 +20,10 @@ plugins=(
   helm
   fzf-tab
 )
+
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$HOME/Android/Sdk/platform-tools/:/usr/share/virtualenvwrapper/:$HOME/work/vaticle/tools/:$PATH"
+export PATH="/usr/share/virtualenvwrapper/:$HOME/.local/bin:$HOME/.pulumi/bin:$PATH"
 
 
 export WORKON_HOME=~/.virtualenvs/
@@ -31,6 +32,7 @@ source virtualenvwrapper_lazy.sh
 
 source $HOME/dotfiles/az.completion
 source $HOME/dotfiles/ssh.completion
+source /snap/google-cloud-sdk/current/completion.zsh.inc
 
 
 function agr { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'; }
@@ -50,26 +52,9 @@ alias git-copy-last-commit-message="git log -1 --pretty=%B | tr -d '\n' | pbcopy
 alias git-copy-last-commit-sha="git rev-parse HEAD | tr -d '\n' | pbcopy"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-alias vi='nocorrect nvim'
 alias J8='sudo update-java-alternatives -s java-1.8.0-openjdk-amd64'
 alias J11='sudo update-java-alternatives -s java-1.11.0-openjdk-amd64'
-alias fd=fdfind
-alias bat=batcat
-alias e="fd --type=f | fzf --bind 'enter:execute(nvim {1})+abort' || true"
-alias ec="fd --type=f | fzf --bind 'enter:execute(batcat {1})+abort' || true"
+alias e="fdfind --type=f | fzf --bind 'enter:execute(nvim {1})+abort' || true"
+alias ec="fdfind --type=f | fzf --bind 'enter:execute(cat {1})+abort' || true"
 alias size="du -d1 -h"
 alias docker-images-gc="docker image ls --format='{{ .ID }}' | xargs docker image rm -f"
-
-# Created by `userpath` on 2020-11-20 19:33:45
-export PATH="$PATH:/home/vmax/.local/bin"
-
-bindkey -s '^T' ' e\n'
-
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
