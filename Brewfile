@@ -1,0 +1,6 @@
+brew "fd"
+brew "fzf"
+brew "helm"
+brew "kubernetes-cli"
+brew "mcfly"
+brew "minikube"
