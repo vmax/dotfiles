@@ -79,4 +79,4 @@ export MCFLY_FUZZY=2
 
 RPROMPT='$(kubectx_prompt_info)'
 
-source mapping.zsh
+source $HOME/dotfiles/mapping.zsh
