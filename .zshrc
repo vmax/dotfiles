@@ -80,3 +80,9 @@ export MCFLY_FUZZY=2
 RPROMPT='$(kubectx_prompt_info)'
 
 source $HOME/dotfiles/mapping.zsh
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"
+
+. <(flux completion zsh)
