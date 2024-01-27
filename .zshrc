@@ -49,28 +49,18 @@ alias ec="fd --type=f | fzf --bind 'enter:execute(cat {1})+abort' || true"
 function es {
     sk --ansi -i -c 'ag --color "{}"' --preview "$HOME/dotfiles/preview.sh {}"
 }
-alias size="du -d1 -h"
 alias docker-images-gc="docker image ls --format='{{ .ID }}' | xargs docker image rm -f"
 alias tfp='terraform plan'
 alias tfa='terraform apply'
 alias tfA='terraform apply -auto-approve'
+alias tfo="terraform output -json | jq -r '.|map_values(.value)'"
 
-
-brew-graph-deps() {
-   tempfile=$(mktemp); brew graph --installed --highlight-outdated --highlight-leaves | dot -Tsvg > $tempfile; mv $tempfile $tempfile.svg; open -a "Google Chrome.app" $tempfile.svg
-}
 
 brew-graph-deps-copy() {
    brew graph --installed --highlight-outdated --highlight-leaves | pbcopy
 }
 
 RPROMPT='$(kubectx_prompt_info)'
-
-source $HOME/dotfiles/mapping.zsh
-
-
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
 
 
 typeset -U path
@@ -85,13 +75,9 @@ export PATH
 
 eval "$(direnv hook zsh)"
 
-export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+
+export VIRTUALENVWRAPPER_PYTHON=`which python3.12`
 source /opt/homebrew/bin/virtualenvwrapper_lazy.sh
 
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
-
 alias hg='history | grep $1'
-export PATH=$PATH:$HOME/bin/load-secure-files
-
-eval "$(logcli --completion-script-zsh)"
-
+alias p1="awk '{print \$1}'"
